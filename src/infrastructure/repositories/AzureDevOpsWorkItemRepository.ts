@@ -2,6 +2,7 @@ import { WebApi, getPersonalAccessTokenHandler } from 'azure-devops-node-api';
 import { WorkItem } from '../../domain/entities/WorkItem';
 import { IWorkItemRepository } from '../../domain/repositories/IWorkItemRepository';
 import { AzureDevOpsConfig } from '../config/AzureDevOpsConfig';
+import { CommentList } from 'azure-devops-node-api/interfaces/WorkItemTrackingInterfaces';
 
 export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
   private readonly connection: WebApi;
@@ -24,26 +25,32 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
     const ids = queryResult.workItems.map(wi => wi.id ?? 0);
     const workItems = await workItemTrackingApi.getWorkItems(ids);
 
-    return workItems.map(
-      wi =>
-        new WorkItem(
+    return Promise.all(
+      workItems.map(async wi => {
+        const wiUrl = `https://dev.azure.com/${this.config.organization}/${this.config.project}/_workitems/edit/${wi.id}`;
+        const category = wi.fields?.['Custom.832ceda1-ab52-4a64-8f7b-2b4aef222efc'] ?? '';
+        const customLink = wi.fields?.['Custom.Link'] ?? '';
+        const commentCount = wi.fields?.['System.CommentCount'] ?? 0;
+        const comments = commentCount > 0 ? await this.getComments(wi.id ?? 0) : [];
+
+        return new WorkItem(
           wi.id ?? 0,
-          // WI edit url
-          `https://dev.azure.com/${this.config.organization}/${this.config.project}/_workitems/edit/${wi.id}`,
+          wiUrl,
           wi.fields?.['System.Title'] ?? '',
           wi.fields?.['System.State'] ?? '',
           wi.fields?.['System.WorkItemType'] ?? '',
           wi.fields?.['Custom.EquipoImpactado'] ?? '',
-          // Category
-          wi.fields?.['Custom.832ceda1-ab52-4a64-8f7b-2b4aef222efc'] ?? '',
+          category,
           this.stripHtml(wi.fields?.['System.Description'] ?? ''),
-          // Pipeline link
-          wi.fields?.['Custom.Link'] ?? '',
+          customLink,
           wi.fields?.['System.CreatedBy']?.displayName ?? '',
           new Date(wi.fields?.['System.CreatedDate'] ?? ''),
           wi.fields?.['System.AssignedTo']?.displayName ?? '',
-          wi.fields?.['System.Tags']?.split(';') ?? []
-        )
+          wi.fields?.['System.Tags']?.split(';') ?? [],
+          commentCount,
+          comments
+        );
+      })
     );
   }
 
@@ -61,5 +68,10 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
     text = text.replace(/\s+/g, ' ').trim();
 
     return text;
+  }
+
+  private async getComments(workItemId: number): Promise<CommentList> {
+    const workItemTrackingApi = await this.connection.getWorkItemTrackingApi();
+    return workItemTrackingApi.getComments(this.config.project, workItemId);
   }
 }

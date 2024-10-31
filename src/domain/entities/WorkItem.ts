@@ -12,6 +12,9 @@ export class WorkItem {
     public readonly createdBy: string,
     public readonly createdDate?: Date,
     public readonly assignedTo?: string,
-    public readonly tags?: string[]
+    public readonly tags?: string[],
+    public readonly commentCount?: number,
+    public readonly comments?: any,
+    public readonly cumpleDOR?: boolean
   ) {}
 }
