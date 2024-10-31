@@ -28,11 +28,21 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
       wi =>
         new WorkItem(
           wi.id ?? 0,
-          wi.fields?.['System.Title'],
-          wi.fields?.['System.State'],
-          wi.fields?.['System.WorkItemType'],
-          wi.fields?.['System.AssignedTo']?.displayName,
-          new Date(wi.fields?.['System.CreatedDate'])
+          // WI edit url
+          `https://dev.azure.com/${this.config.organization}/${this.config.project}/_workitems/edit/${wi.id}`,
+          wi.fields?.['System.Title'] ?? '',
+          wi.fields?.['System.State'] ?? '',
+          wi.fields?.['System.WorkItemType'] ?? '',
+          wi.fields?.['Custom.EquipoImpactado'] ?? '',
+          // Category
+          wi.fields?.['Custom.832ceda1-ab52-4a64-8f7b-2b4aef222efc'] ?? '',
+          wi.fields?.['System.Description'] ?? '',
+          // Pipeline link
+          wi.fields?.['Custom.Link'] ?? '',
+          wi.fields?.['System.CreatedBy']?.displayName ?? '',
+          new Date(wi.fields?.['System.CreatedDate'] ?? ''),
+          wi.fields?.['System.AssignedTo']?.displayName ?? '',
+          wi.fields?.['System.Tags']?.split(';') ?? []
         )
     );
   }
