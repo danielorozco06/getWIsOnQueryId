@@ -34,29 +34,26 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
       workItems.map(async wi => {
         const wiUrl = `https://dev.azure.com/${this.config.organization}/${this.config.project}/_workitems/edit/${wi.id}`;
         const category = wi.fields?.['Custom.832ceda1-ab52-4a64-8f7b-2b4aef222efc'] ?? '';
-        const customLink = wi.fields?.['Custom.Link'] ?? '';
         const commentCount = wi.fields?.['System.CommentCount'] ?? 0;
         const comments = commentCount > 0 ? await this.getComments(wi.id ?? 0) : [];
         const description = this.stripHtml(wi.fields?.['System.Description'] ?? '');
-        const cumpleDOR = this.checkDor(dors.categories, description, category);
+        const { cumpleDOR, fields } = this.checkDor(dors.categories, description, category);
 
         return new WorkItem(
           wi.id ?? 0,
           wiUrl,
+          cumpleDOR,
+          fields,
           wi.fields?.['System.Title'] ?? '',
           wi.fields?.['System.State'] ?? '',
           wi.fields?.['System.WorkItemType'] ?? '',
           wi.fields?.['Custom.EquipoImpactado'] ?? '',
           category,
-          description,
-          customLink,
           wi.fields?.['System.CreatedBy']?.displayName ?? '',
           new Date(wi.fields?.['System.CreatedDate'] ?? ''),
           wi.fields?.['System.AssignedTo']?.displayName ?? '',
           wi.fields?.['System.Tags']?.split(';') ?? [],
-          commentCount,
-          comments,
-          cumpleDOR
+          commentCount
         );
       })
     );
@@ -95,11 +92,18 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
     return JSON.parse(jsonContent);
   }
 
-  private checkDor(categories: CategoryDOR[], description: string, wiCategory: string): boolean {
+  private checkDor(
+    categories: CategoryDOR[],
+    description: string,
+    wiCategory: string
+  ): { cumpleDOR: boolean; fields: string[] } {
     const category = categories.find(c => c.name.toLowerCase() === wiCategory.toLowerCase());
-    return (
-      category?.dor?.required_fields.every(field => description.toLowerCase().includes(field.name.toLowerCase())) ??
-      false
+    if (!category?.dor?.required_fields) {
+      return { cumpleDOR: false, fields: [] };
+    }
+    const hasAllFields = category.dor.required_fields.every(field =>
+      description.toLowerCase().includes(field.name.toLowerCase())
     );
+    return { cumpleDOR: hasAllFields, fields: category.dor.required_fields.map(field => field.name) };
   }
 }
