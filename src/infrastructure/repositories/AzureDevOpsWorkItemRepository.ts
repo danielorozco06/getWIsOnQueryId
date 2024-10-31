@@ -30,7 +30,7 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
     // Get categories
     const dors: Dors = await this.getJsonFileContent('./src/infrastructure/constants/categoriesDOR.json');
 
-    return Promise.all(
+    const mappedWorkItems = await Promise.all(
       workItems.map(async wi => {
         const wiUrl = `https://dev.azure.com/${this.config.organization}/${this.config.project}/_workitems/edit/${wi.id}`;
         const category = wi.fields?.['Custom.832ceda1-ab52-4a64-8f7b-2b4aef222efc'] ?? '';
@@ -60,6 +60,13 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
         );
       })
     );
+
+    // Sort by CreatedDate in ascending order
+    return mappedWorkItems.sort((a, b) => {
+      const aTime = a.createdDate?.getTime() ?? 0;
+      const bTime = b.createdDate?.getTime() ?? 0;
+      return aTime - bTime;
+    });
   }
 
   private stripHtml(html: string): string {
