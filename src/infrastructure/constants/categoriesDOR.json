@@ -160,7 +160,30 @@
     },
     {
       "name": "RTC (Build, Package, Deploy)",
-      "dor": null
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Aplicación:",
+            "description": "Código o nombre de aplicación"
+          },
+          {
+            "name": "Proyecto:",
+            "description": "Bancolombia - Sufi - leasing"
+          },
+          {
+            "name": "Wiki consultada:",
+            "description": "Enlace o ruta dentro de la wiki que fue consultada antes de crear el caso"
+          }
+        ]
+      }
     },
     {
       "name": "RTC Normalización",
