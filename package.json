@@ -1,0 +1,20 @@
+{
+  "name": "processwi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/node": "^22.8.4",
+    "azure-devops-node-api": "^14.1.0",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
