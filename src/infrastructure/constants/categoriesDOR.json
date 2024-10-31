@@ -424,7 +424,7 @@
             "description": "Detallar las dudas que se tengan sobre el lineamiento DevOps que se requiera asesoría, si es duda con un error usar la categoría apropiada"
           },
           {
-            "name": "Tipo de Asesoria:",
+            "name": "Tipo de Asesoría:",
             "description": null
           },
           {
