@@ -1,8 +1,10 @@
 import { WebApi, getPersonalAccessTokenHandler } from 'azure-devops-node-api';
+import { CommentList } from 'azure-devops-node-api/interfaces/WorkItemTrackingInterfaces';
+import fs from 'fs';
 import { WorkItem } from '../../domain/entities/WorkItem';
 import { IWorkItemRepository } from '../../domain/repositories/IWorkItemRepository';
 import { AzureDevOpsConfig } from '../config/AzureDevOpsConfig';
-import { CommentList } from 'azure-devops-node-api/interfaces/WorkItemTrackingInterfaces';
+import { CategoryDOR, Dors } from './interfaces';
 
 export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
   private readonly connection: WebApi;
@@ -25,6 +27,9 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
     const ids = queryResult.workItems.map(wi => wi.id ?? 0);
     const workItems = await workItemTrackingApi.getWorkItems(ids);
 
+    // Get categories
+    const dors: Dors = await this.getJsonFileContent('./src/infrastructure/constants/categoriesDOR.json');
+
     return Promise.all(
       workItems.map(async wi => {
         const wiUrl = `https://dev.azure.com/${this.config.organization}/${this.config.project}/_workitems/edit/${wi.id}`;
@@ -32,6 +37,8 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
         const customLink = wi.fields?.['Custom.Link'] ?? '';
         const commentCount = wi.fields?.['System.CommentCount'] ?? 0;
         const comments = commentCount > 0 ? await this.getComments(wi.id ?? 0) : [];
+        const description = this.stripHtml(wi.fields?.['System.Description'] ?? '');
+        const cumpleDOR = this.checkDor(dors.categories, description, category);
 
         return new WorkItem(
           wi.id ?? 0,
@@ -41,14 +48,15 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
           wi.fields?.['System.WorkItemType'] ?? '',
           wi.fields?.['Custom.EquipoImpactado'] ?? '',
           category,
-          this.stripHtml(wi.fields?.['System.Description'] ?? ''),
+          description,
           customLink,
           wi.fields?.['System.CreatedBy']?.displayName ?? '',
           new Date(wi.fields?.['System.CreatedDate'] ?? ''),
           wi.fields?.['System.AssignedTo']?.displayName ?? '',
           wi.fields?.['System.Tags']?.split(';') ?? [],
           commentCount,
-          comments
+          comments,
+          cumpleDOR
         );
       })
     );
@@ -73,5 +81,18 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
   private async getComments(workItemId: number): Promise<CommentList> {
     const workItemTrackingApi = await this.connection.getWorkItemTrackingApi();
     return workItemTrackingApi.getComments(this.config.project, workItemId);
+  }
+
+  private getJsonFileContent(filePath: string): Promise<any> {
+    const jsonContent = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(jsonContent);
+  }
+
+  private checkDor(categories: CategoryDOR[], description: string, wiCategory: string): boolean {
+    const category = categories.find(c => c.name.toLowerCase() === wiCategory.toLowerCase());
+    return (
+      category?.dor?.required_fields.every(field => description.toLowerCase().includes(field.name.toLowerCase())) ??
+      false
+    );
   }
 }

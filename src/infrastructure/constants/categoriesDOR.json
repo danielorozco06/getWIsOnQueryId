@@ -1,0 +1,415 @@
+{
+  "categories": [
+    {
+      "name": "Kiuwan",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Artifactory login",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Artifactory Caja Negra",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Artifactory descargar/cargar dependencia",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Artifactory subir librerías",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ansible",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Git - Creación, renombrar y agregar politicas",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Git - Pullrequest abandonado por politica",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Urban Code Deploy pool Datastage",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Ambiente:",
+            "description": "Dev - QA - PDN"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Urban Code Deploy Importación de artefacto",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Ambiente:",
+            "description": "Dev - QA - PDN"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RTC (Build, Package, Deploy)",
+      "dor": null
+    },
+    {
+      "name": "RTC Normalización",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Aplicación:",
+            "description": "Código o nombre de aplicación"
+          },
+          {
+            "name": "Proyecto:",
+            "description": "Bancolombia - Sufi - leasing"
+          },
+          {
+            "name": "Wiki consultada:",
+            "description": "Enlace o ruta dentro de la wiki que fue consultada antes de crear el caso"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Datical error en pipeline de build",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Se validó con Equipo de base de datos:",
+            "description": "Si - No"
+          },
+          {
+            "name": "Respuesta DBA:",
+            "description": "ingresar la respuesta entregada desde el equipo de BD"
+          },
+          {
+            "name": "¿Se validó el manual de errores comunes?",
+            "description": "Si (enlace) - No"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Datical error en pipeline de release",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Se validó con Equipo de base de datos:",
+            "description": "Si - No"
+          },
+          {
+            "name": "Respuesta DBA:",
+            "description": "ingresar la respuesta entregada desde el equipo de BD"
+          },
+          {
+            "name": "¿Se validó el manual de errores comunes?",
+            "description": "Si (enlace) - No"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Deprecar Objetos",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Tipo de Objeto:",
+            "description": "Indicar tipo de objeto a ser deprecado: repositorio, pipeline, aplicación iSeries, etc."
+          },
+          {
+            "name": "Aprobación del lider:",
+            "description": "Se debe incluir el usuario/nombre del líder que brinda la aprobación y en evidencias o como adjunto incluir dicha aprobación"
+          },
+          {
+            "name": "Aprobación de Equipo Procesos:",
+            "description": "Si es para Jubilación se debe incluir el integrante del equipo de procesos que brinda la aprobación y en evidencias o como adjunto incluir dicha aprobación"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Excepciones",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Link:",
+            "description": "Enlace del pipeline de build sobre el que se desea excepcionar"
+          },
+          {
+            "name": "Motivo de excepcion:",
+            "description": "Motivo por el cual se solicita la excepción"
+          },
+          {
+            "name": "Tipo de Excepcion:",
+            "description": "Lineamiento DevOps el cual se quiere excepcionar (build_tasks, rollback, naming_standard, etc.)"
+          },
+          {
+            "name": "Fecha de expiración:",
+            "description": "Indicar la fecha hasta la cual se solicita la excepción."
+          }
+        ]
+      }
+    },
+    {
+      "name": "Error DevOps Framework(Adoption)",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Stage:",
+            "description": "En caso de ser un release, indicar el stage donde se presenta el error"
+          },
+          {
+            "name": "Pool de agentes:",
+            "description": "Solo se atenderán los errores en los siguientes Pool de Agentes: Build, Build-iSeries, DevOps-PDN, Release, Release-cloud, HostedAgent"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Error pool de Agentes",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Stage:",
+            "description": "En caso de ser un release, indicar el stage donde se presenta el error"
+          },
+          {
+            "name": "Pool de agentes:",
+            "description": "Solo se atenderán los errores en los siguientes Pool de Agentes: Build, Build-iSeries, DevOps-PDN, Release, Release-cloud, HostedAgent"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Error tarea de Sonar",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Stage:",
+            "description": "En caso de ser un release, indicar el stage donde se presenta el error"
+          },
+          {
+            "name": "Pool de agentes:",
+            "description": "Solo se atenderán los errores en los siguientes Pool de Agentes: Build, Build-iSeries, DevOps-PDN, Release, Release-cloud, HostedAgent"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Error tarea Validate Release",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Pool de Agentes:",
+            "description": "Indicar el pool de agentes donde se presenta el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Error Rollback",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Descripción:",
+            "description": "Descripción clara del error sin imagenes, las imagenes se pueden incluir en la pestaña de evidencias de la HU"
+          },
+          {
+            "name": "Link:",
+            "description": "En el link compartido se debe evidenciar el error"
+          },
+          {
+            "name": "Pool de Agentes:",
+            "description": "Indicar el pool de agentes donde se presenta el error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Asesoría",
+      "dor": {
+        "required_fields": [
+          {
+            "name": "Dudas de Lineamiento:",
+            "description": "Detallar las dudas que se tengan sobre el lineamiento DevOps que se requiera asesoría, si es duda con un error usar la categoría apropiada"
+          },
+          {
+            "name": "Tipo de Asesoria:",
+            "description": null
+          },
+          {
+            "name": "Wiki consultada:",
+            "description": "Ingresar el link de la wiki que se haya consultado previo a la creación del caso"
+          }
+        ]
+      }
+    }
+  ]
+}
