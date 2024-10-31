@@ -36,7 +36,7 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
           wi.fields?.['Custom.EquipoImpactado'] ?? '',
           // Category
           wi.fields?.['Custom.832ceda1-ab52-4a64-8f7b-2b4aef222efc'] ?? '',
-          wi.fields?.['System.Description'] ?? '',
+          this.stripHtml(wi.fields?.['System.Description'] ?? ''),
           // Pipeline link
           wi.fields?.['Custom.Link'] ?? '',
           wi.fields?.['System.CreatedBy']?.displayName ?? '',
@@ -45,5 +45,21 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
           wi.fields?.['System.Tags']?.split(';') ?? []
         )
     );
+  }
+
+  private stripHtml(html: string): string {
+    // Remove html entities
+    let text = html.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&');
+
+    // Remove html tags while preserving href content
+    text = text.replace(/<a[^>]*href="([^"]*)"[^>]*>[^<]*<\/a>/g, '$1');
+
+    // Remove remaining html tags
+    text = text.replace(/<[^>]*>?/g, '');
+
+    // Trim whitespace and normalize spaces
+    text = text.replace(/\s+/g, ' ').trim();
+
+    return text;
   }
 }
