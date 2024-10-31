@@ -91,7 +91,7 @@
       }
     },
     {
-      "name": "Git - Creación, renombrar y agregar politicas",
+      "name": "Git - Creación, renombrar y agregar políticas",
       "dor": {
         "required_fields": [
           {
@@ -106,7 +106,7 @@
       }
     },
     {
-      "name": "Git - Pullrequest abandonado por politica",
+      "name": "Git - Pullrequest abandonado por política",
       "dor": {
         "required_fields": [
           {
@@ -271,11 +271,11 @@
             "description": "Enlace del pipeline de build sobre el que se desea excepcionar"
           },
           {
-            "name": "Motivo de excepcion:",
+            "name": "Motivo de excepción:",
             "description": "Motivo por el cual se solicita la excepción"
           },
           {
-            "name": "Tipo de Excepcion:",
+            "name": "Tipo de Excepción:",
             "description": "Lineamiento DevOps el cual se quiere excepcionar (build_tasks, rollback, naming_standard, etc.)"
           },
           {
