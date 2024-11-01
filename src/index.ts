@@ -24,7 +24,7 @@ async function main() {
 
   // Filter work items based on DOR compliance and tags, and print the result
   const filteredWorkItems = result.data?.filter(
-    wi => (wi.cumpleDOR && !wi.tags?.includes('CumpleDOR')) || (!wi.cumpleDOR && wi.tags?.includes('CumpleDOR'))
+    wi => (wi.cumpleDOR && !wi.tags?.includes('CumpleDOR')) || (!wi.cumpleDOR && !wi.tags?.includes('NoCumpleDOR'))
   );
   console.log(JSON.stringify({ ...result, data: filteredWorkItems }, null, 2));
 }
