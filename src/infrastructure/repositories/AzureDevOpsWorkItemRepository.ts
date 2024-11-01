@@ -101,9 +101,19 @@ export class AzureDevOpsWorkItemRepository implements IWorkItemRepository {
     if (!category?.dor?.required_fields) {
       return { cumpleDOR: false, fields: [] };
     }
-    const hasAllFields = category.dor.required_fields.every(field =>
-      description.toLowerCase().includes(field.name.toLowerCase())
-    );
+
+    // Helper function to remove accents/diacritics from text
+    const removeAccents = (str: string) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    // Normalize description by converting to lowercase and removing accents
+    const normalizedDescription = removeAccents(description.toLowerCase());
+
+    const hasAllFields = category.dor.required_fields.every(field => {
+      // Normalize field name by converting to lowercase and removing accents
+      const normalizedFieldName = removeAccents(field.name.toLowerCase());
+      return normalizedDescription.includes(normalizedFieldName);
+    });
+
     return { cumpleDOR: hasAllFields, fields: category.dor.required_fields.map(field => field.name) };
   }
 }
