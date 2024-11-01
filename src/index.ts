@@ -21,7 +21,12 @@ async function main() {
 
   // Get work items
   const result = await controller.getWorkItems(queryId);
-  console.log(JSON.stringify(result, null, 2));
+
+  // Filter work items based on DOR compliance and tags, and print the result
+  const filteredWorkItems = result.data?.filter(
+    wi => (wi.cumpleDOR && !wi.tags?.includes('CumpleDOR')) || (!wi.cumpleDOR && wi.tags?.includes('CumpleDOR'))
+  );
+  console.log(JSON.stringify({ ...result, data: filteredWorkItems }, null, 2));
 }
 
 main().catch(console.error);
